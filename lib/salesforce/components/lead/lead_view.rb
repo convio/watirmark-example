@@ -8,7 +8,7 @@ module Salesforce
     keyword(:delete_button) {browser.button(:name,"del")}
 
     #fields
-    keyword(:salutation)    {browser.select(:name,"name_salutationlea2")}
+    keyword(:salutation)    {browser.select_list(:name,"name_salutationlea2")}
     keyword(:first_name)    {browser.text_field(:name,"name_firstlea2")}
     keyword(:last_name)     {browser.text_field(:name,"name_lastlea2")}
     keyword(:company)       {browser.text_field(:name,"lea3")}
@@ -19,6 +19,9 @@ module Salesforce
     keyword(:rating)        {browser.select_list(:name,"lea14")}
 
     class << self
+
+      include Salesforce::Search
+
       def create(hash)
         lead_tab.click
         new_button.click
@@ -30,17 +33,19 @@ module Salesforce
       end
 
       def exists?(hash)
-        locate(hash)
+        search(hash, select_item_if_found=false)
+      end
+
+      def locate(hash)
+        searchstring = (hash[:first_name] + " " + hash[:last_name]).strip
+        hash.merge!({:searchgroup => "Leads",:searchstring => searchstring})
+        raise TestError, "Unable to locate record" if !search(hash)
       end
 
       def delete(hash)
         locate(hash)
-        delete_button.click
       end
 
-      def locate(hash)
-        #todo add salesforce search and implement
-      end
     end
 
   end

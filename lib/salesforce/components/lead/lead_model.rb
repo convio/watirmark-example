@@ -3,7 +3,7 @@ module Salesforce
     include Model::Simple
     def defaults
       {
-        :salutation => "Mr.",
+        #:salutation => "Mr.",
         :email => "foobar@nullmail.com",
         :phone => "123-456-7890",
       }

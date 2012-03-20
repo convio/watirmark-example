@@ -23,18 +23,19 @@ describe "Logging in to a salesforce org" do
 
   specify "I can edit a lead" do
     #change model and call edit here
-    #@lead.edit
+    @lead.edit
   end
 
   specify "I can verify a lead" do
-    #@lead.verify
+    @lead.verify
   end
 
-  specify "I can check if a lead exists" do
-    #@lead.exists?.should == true
+  specify "I can get a lead that already exists" do
+    @lead.get
   end
 
   specify "I can delete a lead" do
-    #@lead.delete
+    @lead.delete
   end
+
 end

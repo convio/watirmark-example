@@ -1,12 +1,13 @@
 GEM
   remote: http://gemcutter.org/
+  remote: http://gemserver.qa.convioanalyticstest.net:8808/
   specs:
     american_date (1.0.0)
     builder (3.0.0)
     childprocess (0.3.1)
       ffi (~> 1.0.6)
     colored (1.2)
-    commonwatir (2.0.4)
+    commonwatir (2.0.4.1)
       user-choices
     diff-lcs (1.1.3)
     ffi (1.0.11)
@@ -42,19 +43,18 @@ GEM
       xml-simple (>= 1.0.11)
     uuid (2.3.5)
       macaddr (~> 1.0)
-    watir (2.0.4)
-      commonwatir (= 2.0.4)
+    watir (2.0.4.1)
+      commonwatir (= 2.0.4.1)
       ffi (~> 1.0)
       nokogiri
       rautomation (~> 0.6.3)
       win32-process (>= 0.5.5)
       windows-pr (>= 0.6.6)
-    watir-webdriver (0.5.3)
+    watir-webdriver (0.5.3.1)
       selenium-webdriver (>= 2.12.0)
     watirmark (1.4.2)
       american_date
       logger
-      watir
       watir-webdriver
       watirmark-log
     watirmark-log (1.0.5)
@@ -75,4 +75,5 @@ PLATFORMS
 DEPENDENCIES
   rspec
   uuid
+  watir
   watirmark

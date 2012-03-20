@@ -6,6 +6,8 @@ require 'watirmark/webpage/webpage'
 require 'salesforce/configuration'
 
 require 'salesforce/site/wait_checkers'
+require 'salesforce/site/search'
+require 'salesforce/site/delete'
 
 require 'salesforce/core/sf_model'
 require 'salesforce/core/sf_view'

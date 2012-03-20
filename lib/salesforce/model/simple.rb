@@ -19,6 +19,8 @@ module Salesforce
       # adds a hash of values to the object
       def update hash
         hash.each_pair do |key, value|
+          if key == :searchgroup; next end
+          if key == :searchstring; next end
           send "#{key}=", value
         end
         self
