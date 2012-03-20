@@ -20,8 +20,5 @@ require 'salesforce/components/lead/lead'
 require 'salesforce/components/lead/lead_view'
 require 'salesforce/components/lead/lead_model'
 
-require 'salesforce/components/contact/contact_model'
-require 'salesforce/components/contact/contact_view'
-require 'salesforce/components/contact/contact'
 
 
