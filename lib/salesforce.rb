@@ -16,9 +16,9 @@ require 'salesforce/components/login/login_view'
 require 'salesforce/components/login/login_model'
 require 'salesforce/components/login/login'
 
-require 'salesforce/components/lead/lead'
 require 'salesforce/components/lead/lead_view'
 require 'salesforce/components/lead/lead_model'
+require 'salesforce/components/lead/lead'
 
 
 

@@ -2,12 +2,13 @@ module Salesforce
   class LeadView < SFView
 
     #buttons
-    keyword(:new_button)    {browser.button(:text,"new")}
-    keyword(:edit_button)   {browser.button(:text,"new")}
-    keyword(:delete_button) {browser.button(:text,"new")}
+    keyword(:new_button)    {browser.button(:name,"new")}
+    keyword(:edit_button)   {browser.button(:name,"edit")}
+    keyword(:save_button)   {browser.button(:name,"save")}
+    keyword(:delete_button) {browser.button(:name,"del")}
 
     #fields
-    keyword(:salutation)    {browser.select_list(:name,"name_salutationlea2")}
+    keyword(:salutation)    {browser.select(:name,"name_salutationlea2")}
     keyword(:first_name)    {browser.text_field(:name,"name_firstlea2")}
     keyword(:last_name)     {browser.text_field(:name,"name_lastlea2")}
     keyword(:company)       {browser.text_field(:name,"lea3")}

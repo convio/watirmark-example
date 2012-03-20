@@ -1,9 +1,8 @@
 module Salesforce
   class SFView < Page
 
-    keyword(:home_tab)    {}
-    keyword(:lead_tab)    {}
-    keyword(:contact_tab) {}
+    keyword(:home_tab)    {browser.link(:title,"Home Tab")}
+    keyword(:lead_tab)    {browser.link(:title,"Leads Tab")}
 
     class << self
       def home
