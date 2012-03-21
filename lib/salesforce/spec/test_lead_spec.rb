@@ -21,20 +21,22 @@ describe "Logging in to a salesforce org" do
     @lead.create
   end
 
-  specify "I can edit a lead" do
-    #change model and call edit here
-    @lead.edit
-  end
-
-  specify "I can verify a lead" do
-    @lead.verify
-  end
-
   specify "I can get a lead that already exists" do
     @lead.get
   end
 
+  specify "I can edit a lead" do
+    @lead.rasta[:company] = "Vandelay Industries"
+    @lead.edit
+  end
+
+  specify "I can verify a lead" do
+    @lead.rasta[:company] = "Vandelay Industries"
+    @lead.verify
+  end
+
   specify "I can delete a lead" do
+    @lead.rasta[:company] = "Vandelay Industries"
     @lead.delete
   end
 

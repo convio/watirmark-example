@@ -1,6 +1,8 @@
 module Salesforce
   LeadModel = Struct.new(*LeadView.keywords) do
+
     include Model::Simple
+
     def defaults
       {
         #:salutation => "Mr.",
@@ -8,5 +10,6 @@ module Salesforce
         :phone => "123-456-7890",
       }
     end
+
   end
 end

@@ -33,17 +33,17 @@ module Salesforce
       end
 
       def exists?(hash)
-        search(hash, select_item_if_found=false)
-      end
-
-      def locate(hash)
         searchstring = (hash[:first_name] + " " + hash[:last_name]).strip
         hash.merge!({:searchgroup => "Leads",:searchstring => searchstring})
-        raise TestError, "Unable to locate record" if !search(hash)
+        search(hash)
       end
 
       def delete(hash)
         locate(hash)
+      end
+
+      def locate(hash)
+        raise TestError, "Unable to locate record" if !exists?(hash)
       end
 
     end

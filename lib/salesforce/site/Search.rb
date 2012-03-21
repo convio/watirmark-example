@@ -96,7 +96,7 @@ module Salesforce
           # but nextsibling here sometimes gives this error
         end
       end
-      return false
+      false
     end
 
     def chatter_search(select_item, rasta)
@@ -139,24 +139,6 @@ module Salesforce
       return false
     end
 
-    def classic_search(select_item, rasta)
-      TabController.new(Page.browser).select(:accounts) unless (Page.browser.link(:title, 'Accounts Tab - Selected').exists? || CGPage.classic_searchstring.exists?)
-      CGPage.classic_searchstring = rasta[:searchstring]
-      CGPage.classic_searchgroup = rasta[:searchgroup]
-      CGPage.classic_searchbutton.click
-      unless Page.browser.text =~ /There are no matching/
-        searchgroup = CGPage.search_list_section(rasta[:searchgroup])
-        if searchgroup
-          list_link = CGPage.search_list_link(searchgroup, rasta[:searchstring])
-          if list_link.exists?
-            list_link.click if select_item
-            return true
-          end
-        end
-      end
-      return false
-    end
-
     # Navigates to the view page for the specified record. Returns false if unsuccessful.
     def look_in_search_popup(select_item, rasta)
       default_retries = 5
@@ -165,17 +147,13 @@ module Salesforce
       rasta[:waittime] = (rasta[:waittime] == nil) ? default_waittime : rasta[:waittime].to_i
       actual_retries = 0
       loop do
-        if CGPage.chatter_search_term.exists?
-          found = chatter_search(select_item, rasta)
-        else
-          found = classic_search(select_item, rasta)
-        end
+        found = chatter_search(select_item, rasta)
         return found if found
         sleep rasta[:waittime] unless rasta[:retries] == 0
         actual_retries += 1
         break if actual_retries > rasta[:retries]
       end
-      return false
+      false
     end
 
   end
