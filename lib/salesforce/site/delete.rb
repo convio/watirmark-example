@@ -45,6 +45,8 @@ module Salesforce
           context.button(:value, 'Delete').click_no_wait
         when :link
           context.link(:text, 'Del').click_no_wait
+        else
+          raise TestError, "Delete button not found"
       end
       close_dialog
       confirm_delete

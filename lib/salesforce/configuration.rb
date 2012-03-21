@@ -4,7 +4,7 @@ config_file = "#{config_path}/config.txt"
 Watirmark::Configuration.instance.defaults = {
   :configfile => config_file
 }
-puts "Using config: #{Watirmark::Configuration.instance.inspect}"
+#puts "Using config: #{Watirmark::Configuration.instance.inspect}"
 
 def config
   Watirmark::Configuration.instance

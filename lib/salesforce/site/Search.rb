@@ -1,6 +1,7 @@
 module Salesforce
   module Search
 
+    #TODO: Clean up and condenee
 
     # Searches for record specified by searchstring and searchgroup.
     # Searches first in recent items, then using search "popup".
@@ -99,6 +100,7 @@ module Salesforce
       false
     end
 
+    #TODO: change refs to CGPage to SFPage and add keywords to SFPage
     def chatter_search(select_item, rasta)
       begin
         url = Page.browser.url
