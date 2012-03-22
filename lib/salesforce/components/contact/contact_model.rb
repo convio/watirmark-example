@@ -1,5 +1,5 @@
 module Salesforce
-  LeadModel = Struct.new(*LeadView.keywords) do
+  ContactModel = Struct.new(*ContactView.keywords) do
 
     include Model::Simple
 

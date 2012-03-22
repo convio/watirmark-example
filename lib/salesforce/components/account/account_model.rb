@@ -1,12 +1,12 @@
 module Salesforce
-  LeadModel = Struct.new(*LeadView.keywords) do
+  AccountModel = Struct.new(*AccountView.keywords) do
 
     include Model::Simple
 
     def defaults
       {
-        :email => "foobar@nullmail.com",
         :phone => "123-456-7890",
+        :fax   => "999-888-7777",
       }
     end
 

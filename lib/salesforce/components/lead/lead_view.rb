@@ -1,11 +1,7 @@
 module Salesforce
   class LeadView < SFView
 
-    #buttons
-    keyword(:new_button)    {browser.button(:name,"new")}
-    keyword(:edit_button)   {browser.button(:name,"edit")}
-    keyword(:save_button)   {browser.button(:name,"save")}
-    keyword(:delete_button) {browser.button(:name,"del")}
+    keyword(:lead_tab)    {browser.link(:title,"Leads Tab")}
 
     #fields
     keyword(:salutation)    {browser.select_list(:name,"name_salutationlea2")}
@@ -20,30 +16,13 @@ module Salesforce
 
     class << self
 
-      include Salesforce::Search
-
-      def create(hash)
+      def home(model)
         lead_tab.click
-        new_button.click
       end
 
-      def edit(hash)
-        locate(hash)
-        edit_button.click
-      end
-
-      def exists?(hash)
-        searchstring = (hash[:first_name] + " " + hash[:last_name]).strip
-        hash.merge!({:searchgroup => "Leads",:searchstring => searchstring})
-        search(hash)
-      end
-
-      def delete(hash)
-        locate(hash)
-      end
-
-      def locate(hash)
-        raise TestError, "Unable to locate record" if !exists?(hash)
+      def search_params(model)
+        searchstring = (model[:first_name] + " " + model[:last_name]).strip
+        model.merge!({:searchgroup => "Leads",:searchstring => searchstring})
       end
 
     end

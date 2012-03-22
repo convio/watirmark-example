@@ -100,14 +100,14 @@ module Salesforce
       false
     end
 
-    #TODO: change refs to CGPage to SFPage and add keywords to SFPage
+    #TODO: change refs to SFPage to SFPage and add keywords to SFPage
     def chatter_search(select_item, rasta)
       begin
         url = Page.browser.url
-        CGPage.chatter_search_term.focus
-        CGPage.chatter_search_term = ''
-        CGPage.chatter_search_term = rasta[:searchstring]
-        CGPage.chatter_search_button.click_no_wait
+        SFPage.chatter_search_term.focus
+        SFPage.chatter_search_term = ''
+        SFPage.chatter_search_term = rasta[:searchstring]
+        SFPage.chatter_search_button.click_no_wait
         # This is a little complicated. What happens is that in some environments, when
         # running a series of chatter searches (which is common in cleanup routines), Salesforce
         # will choke and never load the page that has the search request (browser stuck waiting for site).
@@ -123,22 +123,22 @@ module Salesforce
       end
 
       # Scope search option to all data types
-      if CGPage.chatter_options_frame.exists?
-        CGPage.chatter_option_all.value = true
-        CGPage.chatter_option_save.click
+      if SFPage.chatter_options_frame.exists?
+        SFPage.chatter_option_all.value = true
+        SFPage.chatter_option_save.click
       end
 
       unless Page.browser.text =~ /(No matches found|No recent records)\./
-        searchgroup = CGPage.search_list_section(rasta[:searchgroup])
+        searchgroup = SFPage.search_list_section(rasta[:searchgroup])
         if searchgroup
-          list_link = CGPage.search_list_link(searchgroup, rasta[:searchstring])
+          list_link = SFPage.search_list_link(searchgroup, rasta[:searchstring])
           if list_link.exists?
             list_link.click if select_item
             return true
           end
         end
       end
-      return false
+      false
     end
 
     # Navigates to the view page for the specified record. Returns false if unsuccessful.

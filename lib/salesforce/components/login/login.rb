@@ -2,6 +2,7 @@ module Salesforce
   class Login < SFController
 
     @view = Salesforce::LoginView
+    @model = Salesforce::LoginModel
 
     alias :login :create
 

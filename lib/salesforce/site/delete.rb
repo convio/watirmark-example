@@ -10,10 +10,12 @@ module Salesforce
       raise(
         Watirmark::TestError,
         "Error: Delete button was not found."
-      ) unless @browser.button(:name, 'del').exists?
+      ) unless @browser.button(:name, 'del').exists? or
+               @browser.button(:name, 'delete').exists?
 
       # click the delete button
-      Watir::Wait.until {@browser.button(:name, 'del').exists?}
+      Watir::Wait.until {@browser.button(:name, 'del').exists? or
+                         @browser.button(:name, 'delete').exists?}
       delete_item(@browser, :button)
     end
 
@@ -42,7 +44,12 @@ module Salesforce
       @browser.wait
       case type
         when :button
-          context.button(:value, 'Delete').click_no_wait
+          if context.button(:name, 'delete').exists?
+            context.button(:name, 'delete').click_no_wait
+          end
+          if context.button(:name, 'del').exists?
+            context.button(:name, 'del').click_no_wait
+          end
         when :link
           context.link(:text, 'Del').click_no_wait
         else
