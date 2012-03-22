@@ -9,17 +9,17 @@ module Salesforce
       cl_control.create
     end
 
-    class ConvertLead < SFController
+  end
 
-      @view = Salesforce::LeadView::ConvertLeadView
-      @model = Salesforce::ConvertLeadModel
+  class ConvertLead < SFController
 
-      def initialize(l_model)
-        cl_model = ConvertLeadModel.new
-        cl_model.account_name = "Create New Account: " + l_model.company
-        super(cl_model)
-      end
+    @view = Salesforce::ConvertLeadView
+    @model = Salesforce::ConvertLeadModel
 
+    def initialize(l_model)
+      cl_model = ConvertLeadModel.new
+      cl_model.account_name = "Create New Account: " + l_model.company
+      super(cl_model)
     end
 
   end

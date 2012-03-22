@@ -26,7 +26,7 @@ describe "Automating the Account Object" do
 
   it "gives meaningful errors when it fails" do
     @model.phone = "123-4567"
-    lambda {Account.new(@model).verify}.should raise_error(Watirmark::TestError)
+    lambda {Account.new(@model).verify}.should raise_error(Watirmark::VerificationException)
   end
 
   it "can be deleted" do

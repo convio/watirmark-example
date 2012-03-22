@@ -8,19 +8,22 @@ describe "Converting a Lead to a Contact" do
 
   before :each do
     @lead_model = LeadModel.new({
-      :first_name => "Foo",
-      :last_name => "Bar",
-      :company => "Foo Bar Inc"
+      :first_name => "Jim",
+      :last_name => "Boone",
+      :company => "Jim Corp"
     })
 
     @contact_model = ContactModel.new({
-      :first_name => "Foo",
-      :last_name => "Bar",
-      :account_name => "Foo Bar Inc"
+      :first_name => "Jim",
+      :last_name => "Boone",
+      :account_name => "Jim Corp",
+      :email => "foobar@nullmail.com",
+      :phone => "123-456-7890",
     })
 
     @account_model = AccountModel.new({
-      :account_name => "Foo Bar Inc"
+      :account_name => "Jim Corp",
+      :phone => "123-456-7890"
     })
   end
 

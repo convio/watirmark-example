@@ -5,8 +5,7 @@ module Salesforce
 
     def defaults
       {
-        :phone => "123-456-7890",
-        :fax   => "999-888-7777",
+        :phone => "123-456-7890"
       }
     end
 

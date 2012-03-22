@@ -29,7 +29,7 @@ describe "Automating the Contact Object" do
 
   it "gives meaningful errors when it fails" do
     @model.phone = "999-8888"
-    lambda {Contact.new(@model).verify}.should raise_error(Watirmark::TestError)
+    lambda {Contact.new(@model).verify}.should raise_error(Watirmark::VerificationException)
   end
 
   it "can be deleted" do

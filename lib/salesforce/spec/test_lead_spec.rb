@@ -29,7 +29,7 @@ describe "Automating the Lead Object" do
 
   it "give meaningful errors when it fails" do
     @model.phone = "999-8888"
-    lambda {Lead.new(@model).verify}.should raise_error(Watirmark::TestError)
+    lambda {Lead.new(@model).verify}.should raise_error(Watirmark::VerificationException)
   end
 
   it "can be deleted" do
