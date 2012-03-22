@@ -20,10 +20,6 @@ module Salesforce
         super(cl_model)
       end
 
-      #TODO: Find out why select list is not working
-      #def populate_account_name; end
-      #def verify_account_name; end
-
     end
 
   end
