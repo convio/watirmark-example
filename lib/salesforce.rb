@@ -11,7 +11,6 @@ require 'salesforce/site/delete'
 
 require 'salesforce/model/simple'
 
-require 'salesforce/core/sf_model'
 require 'salesforce/core/sf_view'
 require 'salesforce/core/sf_controller'
 

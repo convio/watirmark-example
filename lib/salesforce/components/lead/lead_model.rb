@@ -10,5 +10,18 @@ module Salesforce
       }
     end
 
+
+  end
+
+  ConvertLeadModel = Struct.new(*LeadView::ConvertLeadView.keywords) do
+
+    include Model::Simple
+
+    def defaults
+      {
+          :dont_create_opp => true
+      }
+    end
+
   end
 end

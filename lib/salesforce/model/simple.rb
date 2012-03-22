@@ -21,6 +21,8 @@ module Salesforce
         hash.each_pair do |key, value|
           if key == :searchgroup; next end
           if key == :searchstring; next end
+          if key == :waittime; next end
+          if key == :retries; next end
           send "#{key}=", value
         end
         self

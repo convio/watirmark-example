@@ -21,7 +21,7 @@ module Salesforce
       return true if look_in_recent_items(rasta[:searchgroup], rasta[:searchstring])
       # Check the search widget
       return true if look_in_search_popup(select_item_if_found, rasta)
-      log("SF::SEARCH - DID NOT FIND ANYTHING")
+      puts("SF::SEARCH - DID NOT FIND ANYTHING")
       false
     end
 
@@ -56,7 +56,7 @@ module Salesforce
       # "singular" version of that value. This means we want to look for a match for either
       # "Accounts" (the original) or "Account" a singular version we create. From what I
       # have seen, the "recent items" list has only singular, but I am not going to change
-      # the "look for both" logic yet.
+      # the "look for both" putsic yet.
 
       # Here we use a smart way to turn the "searchgrp" string into a singular form of the
       # string. This works for both "Accounts" and "Batches" As mentioned before, we then look
@@ -68,14 +68,14 @@ module Salesforce
       # characters ( .|()[]{}+\^$*?) and we need to escape them. Only
       # time I saw this was escaping a "blank char" in multi-word string.
       searchstring = Regexp.escape(searchstr)
-      #log("SF::SEARCH - escaped the search string - result is \"#{searchstring}\" string")
+      #puts("SF::SEARCH - escaped the search string - result is \"#{searchstring}\" string")
 
       # 3) The final addition to the recent items regular expression is to
       # look for search string alone, or a search string with some date
       # appeneded to the string.
       #    - "searchgroup: searchstring" or
       #    - "searchgroup: searchstring\s+##/##/####"
-      #log("SF::SEARCH - searching recent with \"(#{searchgroup_orig} OR #{searchgroup_singular}): #{searchstring}($|\s+\d{2}\/\d{2}\/\d{4})\" pattern string")
+      #puts("SF::SEARCH - searching recent with \"(#{searchgroup_orig} OR #{searchgroup_singular}): #{searchstring}($|\s+\d{2}\/\d{2}\/\d{4})\" pattern string")
 
       # locate the sidebar
       sidebar_div = Page.browser.div(:class, 'sidebarModule recentItemModule')
@@ -92,7 +92,7 @@ module Salesforce
             return true
           end
         rescue WIN32OLERuntimeError
-          log("SF::SEARCH: failed with a WIN32OLERuntimeError")
+          puts("SF::SEARCH: failed with a WIN32OLERuntimeError")
           # ignore and try a standard search. Not sure why this happens
           # but nextsibling here sometimes gives this error
         end
@@ -100,20 +100,20 @@ module Salesforce
       false
     end
 
-    #TODO: change refs to SFPage to SFPage and add keywords to SFPage
+    #TODO: change refs to SFView to SFView and add keywords to SFView
     def chatter_search(select_item, rasta)
       begin
         url = Page.browser.url
-        SFPage.chatter_search_term.focus
-        SFPage.chatter_search_term = ''
-        SFPage.chatter_search_term = rasta[:searchstring]
-        SFPage.chatter_search_button.click_no_wait
+        SFView.chatter_search_term.focus
+        SFView.chatter_search_term = ''
+        SFView.chatter_search_term = rasta[:searchstring]
+        SFView.chatter_search_button.click_no_wait
         # This is a little complicated. What happens is that in some environments, when
         # running a series of chatter searches (which is common in cleanup routines), Salesforce
         # will choke and never load the page that has the search request (browser stuck waiting for site).
-        # This causes the scripts to run unreliably, so we've added this wait logic to trap this
+        # This causes the scripts to run unreliably, so we've added this wait putsic to trap this
         # scenario and set up for a retry. Since it was hanging on Page.browser.wait
-        # we needed a little different logic to trap the broken state while at least waiting
+        # we needed a little different putsic to trap the broken state while at least waiting
         # some amount of time for the page to load
         Watir::Wait.until(5) {url != Page.browser.url && Page.browser.document.readystate == 'complete'}
         Page.browser.wait
@@ -123,15 +123,15 @@ module Salesforce
       end
 
       # Scope search option to all data types
-      if SFPage.chatter_options_frame.exists?
-        SFPage.chatter_option_all.value = true
-        SFPage.chatter_option_save.click
+      if SFView.chatter_options_frame.exists?
+        SFView.chatter_option_all.value = true
+        SFView.chatter_option_save.click
       end
 
       unless Page.browser.text =~ /(No matches found|No recent records)\./
-        searchgroup = SFPage.search_list_section(rasta[:searchgroup])
+        searchgroup = SFView.search_list_section(rasta[:searchgroup])
         if searchgroup
-          list_link = SFPage.search_list_link(searchgroup, rasta[:searchstring])
+          list_link = SFView.search_list_link(searchgroup, rasta[:searchstring])
           if list_link.exists?
             list_link.click if select_item
             return true
