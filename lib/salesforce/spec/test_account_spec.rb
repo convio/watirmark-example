@@ -10,26 +10,26 @@ describe "Automating the Account Object" do
     @model = AccountModel.new(:account_name => "Kramerica Industries")
   end
 
-  it "obeys all of the basic CRUD operations" do
+  it "can be created" do
     Account.new(@model).create
   end
 
-  it "obeys all of the basic CRUD operations" do
+  it "can be edited" do
     @model.phone = "867-5309"
     Account.new(@model).edit
   end
 
-  it "obeys all of the basic CRUD operations" do
+  it "can verify the model against the page" do
     @model.phone = "867-5309"
     Account.new(@model).verify
   end
 
-  it "obeys all of the basic CRUD operations" do
+  it "gives meaningful errors when it fails" do
     @model.phone = "123-4567"
     lambda {Account.new(@model).verify}.should raise_error(Watirmark::TestError)
   end
 
-  it "obeys all of the basic CRUD operations" do
+  it "can be deleted" do
     Account.new(@model).delete
   end
 

@@ -2,12 +2,12 @@ require 'spec_helper'
 
 describe "Automating Salesforce login" do
 
-  before :all do
+  before :each do
     @login = Login.new(LoginModel.new)
   end
 
   it "should login using credentials from the model" do
-    @login.login
+    Login.new(@model).login
   end
 
 end
