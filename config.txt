@@ -1,4 +1,7 @@
 url=https://login.salesforce.com/
-username=eric9970@sbcglobal.net
-password=Password0
-attach=true
+
+#put your login here
+username=mysfusername@gmail.com 
+
+#put your password here
+password=somepassword
