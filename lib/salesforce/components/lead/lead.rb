@@ -2,9 +2,9 @@ module Salesforce
   class Lead < SFController
 
     @view = Salesforce::LeadView
-    @model = Salesforce::LeadModel
 
     def convert
+      call_view_method(:locate,@rasta)
       cl_control = ConvertLead.new(@model)
       cl_control.create
     end
@@ -14,7 +14,6 @@ module Salesforce
   class ConvertLead < SFController
 
     @view = Salesforce::ConvertLeadView
-    @model = Salesforce::ConvertLeadModel
 
     def initialize(l_model)
       cl_model = ConvertLeadModel.new

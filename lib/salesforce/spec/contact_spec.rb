@@ -15,21 +15,18 @@ describe "Automating the Contact Object" do
 
   it "can be created" do
     Contact.new(@model).create
+    Contact.new(@model).verify
   end
 
   it "can be edited" do
     @model.phone = "867-5309"
     Contact.new(@model).edit
-  end
-
-  it "can verify the model against the page" do
-    @model.phone = "867-5309"
     Contact.new(@model).verify
   end
 
   it "gives meaningful errors when it fails" do
     @model.phone = "999-8888"
-    lambda {Contact.new(@model).verify}.should raise_error(Watirmark::VerificationException)
+    lambda{Contact.new(@model).verify}.should raise_error(Watirmark::VerificationException)
   end
 
   it "can be deleted" do

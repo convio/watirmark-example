@@ -15,15 +15,12 @@ describe "Automating the Lead Object" do
 
   it "can be created" do
     Lead.new(@model).create
+    Lead.new(@model).verify
   end
 
   it "can be edited" do
     @model.phone = "867-5309"
     Lead.new(@model).edit
-  end
-
-  it "can verify the model against the page" do
-    @model.phone = "867-5309"
     Lead.new(@model).verify
   end
 
