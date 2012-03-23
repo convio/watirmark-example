@@ -7,7 +7,7 @@ describe "Automating Salesforce login" do
   end
 
   it "should login using credentials from the model" do
-    Login.new(@model).login
+    @login.login
   end
 
 end
