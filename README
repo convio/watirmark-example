@@ -1,0 +1,23 @@
+Install Instructions:
+
+Ruby version
+running on Ruby 1.9.3.
+
+checkout the project
+- git clone git://github.com/convio/watirmark-example.git (this is a read only URL)
+
+checkout the watirmark framework and build the gem
+- git clone git://github.com/convio/watirmark.git (this is a read only URL)
+- rake install (this will build watirmark as a gem and put it in the pkg directory within the project)
+- gem install watirmark (must be in the directory with the gem)
+
+checkout convios dev version of watir (version 2.0.4.1)
+- git clone git://github.com/convio/watir.git (this is a read only URL)
+- rake gems (this will build all watir gems and put it in the gems directory within the project)
+-gem install watir (must be in the directory with the gem)
+
+create a salesforce demo
+-navigate in a browser to salesforce.com and signup for a free trial
+-put your login credentials in the config.txt file in the example project. I have fake credentials in there to demonstrate the format.
+-you can remove extra tabs by clicking the '+' sign on the right side of the tab bar. I was only showing the home, lead, account, and contact tab.
+
